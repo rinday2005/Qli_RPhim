@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./src/config/db.js";
 import seedAdmin from "./src/seed/seedAdmin.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
 // Middleware kiểm tra token/role
 import { verifyToken, requireAdmin, requireSuperAdmin } from "./src/middlewares/authMiddleware.js";
@@ -62,6 +63,7 @@ app.get("/api/health", (req, res) => {
 
 // ===== Auth routes =====
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 // ===== Example protected routes =====
 app.get("/api/admin/data", verifyToken, requireAdmin, (req, res) => {
